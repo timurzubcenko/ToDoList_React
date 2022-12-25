@@ -18,18 +18,6 @@ const Tasks = () => {
             })
     }, [])
 
-    // const addTask = () => {
-    //     post.id = tasks.length + 1
-    //     post.title = input
-    //     setInput('')
-    //     if (input == '') {
-    //         setTasks([...tasks])
-    //         alert('Введите текст!')
-    //     }
-    //     else {
-    //         setTasks([...tasks, task])
-    //     }
-    // }
     const onSubmit = () => {
         let task = { title: input, done: false, delete: false }
         axios.post('http://localhost:8000/api/tasks', task)
@@ -48,11 +36,6 @@ const Tasks = () => {
         setInput(e.target.value)
     }
 
-
-
-    // const deleteTask = (task) => {
-    //     setTasks(tasks.filter(t => t._id !== task))
-    // }
     const onDeleteClick = (id) => {
         axios.delete('http://localhost:8000/api/tasks/' + id)
             .then(res => {
@@ -64,9 +47,6 @@ const Tasks = () => {
     }
 
     const doneTask = (id) => {
-        // setTasks(tasks.map(task => {
-        //     return task._id === id ? { ...task, done: !task.done } : task
-        // }))
         axios.get('http://localhost:8000/api/tasks/done/' + id)
             .then(res => {
                 setTasks(tasks.map((task) => {
